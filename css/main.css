@@ -1,3 +1,16 @@
+body{
+    font-family: 'Handlee', cursive;
+}
+
+nav{
+    font-family: 'Montserrat', sans-serif;
+}
+
+footer{
+    font-family: 'Montserrat', sans-serif;
+}
+
+
 .top_logo img{    
     height: 80px;
     position: relative;
@@ -6,12 +19,27 @@
     transform: translateX(-50%) translateY(-20%);
 }
 
-.col-sm-4 img{
-    width: 100%;
-    padding: 10%
+.carousel-caption h1{
+font-size: 150px;
 }
 
-.col-sm-4 button{
-   margin-left: 50%;
-   transform: translateX(-50%);
+.carousel-caption p{
+    font-size: 100px;
+}
+
+
+.product{
+    margin-top: 2em;
+}
+
+.product img{
+    width: 100%;
+}
+
+footer p{
+    background-color: black;
+    color: lightgray;
+    text-align: center;
+    height: 50px;
+    padding: 1em;
 }
