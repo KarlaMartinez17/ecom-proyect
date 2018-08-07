@@ -43,10 +43,10 @@ $(document).ready(function () {
 
     function buildingTemplate(id, thumbnail,title,price){
         var template = '<div class="row product">'+
-            '<div class="col-sm-2">'+
+            '<div class="col-2">'+
             '<img src="'+thumbnail+'" alt="">'+
             '</div>'+
-            '<div class="col-sm-6">'+
+            '<div class="col-6">'+
                 '<h4>Dress:'+
                     '<span class="dress-name"> '+title+'</span>'+
                '</h4>'+
@@ -54,7 +54,7 @@ $(document).ready(function () {
                     '<span class="dress-price">'+price+'</span>'+
                 '</h5>'+
             '</div>'+
-            '<div class="col-sm-4 text-center">'+
+            '<div class="col-4 text-center">'+
                 '<button type="button" class="btn btn-dark show-single-dress" product-id="'+id+'">See more...</button>'+
             '</div>'+
         '</div>';
