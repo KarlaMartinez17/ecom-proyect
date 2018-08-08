@@ -36,10 +36,29 @@ font-size: 150px;
     width: 100%;
 }
 
+#add-to-cart{
+    margin-bottom: 10px;
+    float: right;
+    position: relative;
+    bottom: 35px;
+}
+
 footer p{
     background-color: black;
     color: lightgray;
     text-align: center;
-    height: 50px;
+    height: auto;
     padding: 1em;
+}
+
+
+.minis-template-single-product img{
+    width: 100%;
+    width: 50%;
+    margin-bottom: 10px;
+    
+}
+
+.big-img-template-single-product img{
+    width: 100%;
 }
