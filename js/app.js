@@ -165,7 +165,11 @@ $(document).ready(function () {
 
 
     /************************************************************************************************************** */
-
+    // $(document).on('click', 'error', function(){
+    //     window.location.href='error';
+    //     console.log("oops tas tonta");
+        
+    // })
     
     $(window).on('hashchange', function(){
 		render(decodeURI(window.location.hash));
@@ -200,7 +204,11 @@ $(document).ready(function () {
                 console.log(url.split('#product/'));
 
 				renderSingleProductPage(id);
-			}
+            },
+            // '#error': function(){
+            //     renderErrorPage();
+            // }
+            
 
 		};
 
@@ -228,11 +236,13 @@ $(document).ready(function () {
         console.log('renderSingleProductPage');
 
     }
+    // // Shows the error page.
+    // function renderErrorPage(){
+    //     var page = $('.error-page');
+	// 	page.addClass('visible');
+    //     console.log('renderErrorPage');
 
-    function renderErrorPage(data){
-        console.log('renderErrorPage');
-
-    }
+    // }
 
     $(document).on('click', '#go-back', function(){
         window.location.href='';
@@ -255,31 +265,5 @@ $(document).ready(function () {
 
 
 
- /* paypal.Button.render({
-      env: 'sandbox',
-      client: {
-        sandbox: 'demo_sandbox_client_id'
-      },
-      style: {
-        color: 'gold',   // 'gold, 'blue', 'silver', 'black'
-        size:  'medium', // 'medium', 'small', 'large', 'responsive'
-        shape: 'rect'    // 'rect', 'pill'
-      },
-      payment: function (data, actions) {
-        return actions.payment.create({
-          transactions: [{
-            amount: {
-              total: '0.01',
-              currency: 'USD'
-            }
-          }]
-        });
-      },
-      onAuthorize: function (data, actions) {
-        return actions.payment.execute()
-          .then(function () {
-           window.alert('Thank you for your purchase!');
-          });
-      }
-    }, '#paypal-button');*/
+
 

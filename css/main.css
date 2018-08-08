@@ -61,3 +61,23 @@ footer p{
 .big-img-template-single-product img{
     width: 100%;
 }
+
+/*pagina de error*/
+
+.error-page{
+	opacity: 0;
+	transition: 0.6s;
+	pointer-events: none;
+	position: absolute;
+	left: 0;
+	top: 100px;
+	width: 100%;
+}
+
+.error.visible-page{
+	opacity: 1;
+}
+
+.error-page h3{
+	font-size: 40px;
+}
