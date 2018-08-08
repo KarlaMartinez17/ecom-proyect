@@ -69,6 +69,8 @@ $(document).ready(function () {
 
     $(document).on('click', '.show-single-dress', function (event) {
         event.preventDefault();
+        $("#template-container2").empty();
+
 
         var dressId = $(this).attr('product-id');
         console.log(dressId);
@@ -111,11 +113,11 @@ $(document).ready(function () {
             
 
         }
-        var pictureOne = pictures[0];
-        var pictureTwo = pictures[1];
+        var pictureOne = pictures[0].url;
+        var pictureTwo = pictures[1].url;
         console.log(pictures);
-        var pictureThree = pictures[2];
-        var pictureFour = pictures[3];
+        var pictureThree = pictures[2].url;
+        var pictureFour = pictures[3].url;
 
         $("#template-container2").append(buildingTemplateSingleProduct(singleProductTitle, singleProductPrice, pictureOne, pictureTwo, pictureThree, pictureFour));
 
@@ -128,19 +130,19 @@ $(document).ready(function () {
 
         var template = '<div class="container">' +
             '<div class="row">' +
-            '<div class="col-3 minis-template-single-product">' +
+            '<div class="col-6 minis-template-single-product">' +
             '<img src="' + pictureOne + '" alt="">' +
             '<img src="' + pictureTwo + '" alt="">' +
             '<img src="' + pictureThree + '" alt="">' +
             '</div>' +
-            '<div class="col-5 big-img-template-single-product">' +
+            '<div class="col-6 big-img-template-single-product">' +
             '<img src="' + pictureFour + '" alt="">' +
             '</div>' +
-            '<div class="col-4">' +
+            '<div class="col-12">' +
             '<h3>' +
             '<span class="dress-name"> ' + singleProductTitle + '</span>' +
             '</h3 >' +
-            '<h5>' +
+            '<h5>' + '$'+
             '<span class="dress-price">' + singleProductPrice + '</span>' + ' pesos' +
             '</h5>' +
             '<button id="add-to-cart" type="button" class="btn btn-dark">' +
