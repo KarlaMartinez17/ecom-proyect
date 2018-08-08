@@ -1,14 +1,18 @@
 $(document).ready(function () {
 
+    
+	
+
     // *****************************carrusel******************************************
     $('.carousel').carousel({
         interval: 4000
     })
 
     // *******************llamada al ajax y api de mercado libre************************
-    ajaxDress();
+    
 
     function ajaxDress() {
+        console.log('AJAX DRESS');
         $.ajax({
             url: "https://api.mercadolibre.com/sites/MLA/search?q=vestidos",
             type: 'GET',
@@ -73,10 +77,13 @@ $(document).ready(function () {
 
 
         var dressId = $(this).attr('product-id');
+        window.location.hash = 'product/' + dressId;
         console.log(dressId);
 
-        openSingleDress(dressId)
+        
     });
+
+    
 
     /*************************SINGLE PRODUCT PAGE API ********************************************** */
 
@@ -133,10 +140,10 @@ $(document).ready(function () {
             '<div class="col-6 minis-template-single-product">' +
             '<img src="' + pictureOne + '" alt="">' +
             '<img src="' + pictureTwo + '" alt="">' +
-            '<img src="' + pictureThree + '" alt="">' +
+            '<img src="' + pictureFour + '" alt="">' +
             '</div>' +
             '<div class="col-6 big-img-template-single-product">' +
-            '<img src="' + pictureFour + '" alt="">' +
+            '<img src="' + pictureThree + '" alt="">' +
             '</div>' +
             '<div class="col-12">' +
             '<h3>' +
@@ -147,6 +154,8 @@ $(document).ready(function () {
             '</h5>' +
             '<button id="add-to-cart" type="button" class="btn btn-dark">' +
             '<i class="fa fa-shopping-cart"></i> Add to car...</button>' +
+            '<button id="go-back" type="button" class="btn btn-dark">' +
+            '<i class="fa fa-shopping-cart"></i>Go Back...</button>' +
             '</div>' +
             '</div>' +
             '</div >'
@@ -154,6 +163,80 @@ $(document).ready(function () {
         return template;
     }
 
+
+    /************************************************************************************************************** */
+
+    
+    $(window).on('hashchange', function(){
+		render(decodeURI(window.location.hash));
+    });
+    
+    $(window).trigger('hashchange');
+
+	// Navigation
+	function render(url) {
+        console.log('hola');
+
+		// Get the keyword from the url.
+		var temp = url.split('/')[0];
+
+		// Hide whatever page is currently shown.
+		//$('.main-content .page').removeClass('visible');
+
+
+		var	map = {
+
+			// The "Homepage".
+			'': function() {
+				renderProductsPage();
+			},
+
+			// Single Products page.
+			'#product': function() {
+
+				// Get the index of which product we want to show and call the appropriate function.
+                var id = url.split('#product/')[1].trim();
+                console.log(url);
+                console.log(url.split('#product/'));
+
+				renderSingleProductPage(id);
+			}
+
+		};
+
+		// Execute the needed function depending on the url keyword (stored in temp).
+		if(map[temp]){
+			map[temp]();
+		}
+		// If the keyword isn't listed in the above - render the error page.
+		else {
+			renderErrorPage();
+        }
+    
+    }
+    
+    function renderProductsPage(data){
+        $( ".all-products" ).show();
+        ajaxDress();
+        console.log('RenderProductsPage');
+
+    }
+
+    function renderSingleProductPage(dressId){
+        $( ".all-products" ).hide();
+        openSingleDress(dressId)
+        console.log('renderSingleProductPage');
+
+    }
+
+    function renderErrorPage(data){
+        console.log('renderErrorPage');
+
+    }
+
+    $(document).on('click', '#go-back', function(){
+        window.location.href='';
+    })
 
 });
 
