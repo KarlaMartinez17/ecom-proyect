@@ -318,14 +318,19 @@ $(document).ready(function () {
         var template = '<div class="row cart-item">' +
             '<div class="col-3">' + cartItem.price +'</div>' +
             '<div class="col-6">' + cartItem.title + '</div>' +
-            '<div class="col-3"> <button class="delete-from-cart" index="'+index+'">Borrar</button></div>' +
+            '<div class="col-3"> <button class="delete-from-cart btn btn-dark" index="'+index+'">Borrar</button></div>' +
         '</div>';
 
         return template;
     }
 
     function getCartItems(){
-        return JSON.parse(window.localStorage.ecomerceCart);
+        if(window.localStorage.ecomerceCart){
+            return JSON.parse(window.localStorage.ecomerceCart);
+        } else {
+            return [];
+        }
+        
     }
 
 });

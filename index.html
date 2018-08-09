@@ -136,14 +136,14 @@
         </div>
     </div>
 
-    
-    
+
+
     <!-- Modal -->
     <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Buy It Now!</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -154,9 +154,9 @@
                             <div id="Shooping-bag-title" class="col-12 text-center">
                                 <h2>Shooping Bag</h2>
                             </div>
-                            
+
                             <div class="cart-items">
-                                 <!--
+                                <!--
                                 <div class="col-12 text-center">
                                     <h4>Nombre de prenda:
                                         <span class="dress-name">Vestidito</span>
@@ -185,47 +185,21 @@
                                 -->
                             </div>
 
-                           
-                    
+
+
                         </div>
-                    
-                    
+
+
                     </div>
                 </div>
                 <div class="modal-footer">
                     <div id="paymentPayPal" class="col-12 text-center shadow-lg rounded">
-                        <h4>Total de la compra :<span class="cart-total"></span></h4>
+                        <h4>Total:
+                            <span class="cart-total"></span>
+                        </h4>
                         <div id="paypal-button"></div>
                         <script src="https://www.paypalobjects.com/api/checkout.js"></script>
-                        <script>
-                            paypal.Button.render({
-                                env: 'sandbox',
-                                client: {
-                                    sandbox: 'demo_sandbox_client_id'
-                                },
-                                style: {
-                                    color: 'silver',
-                                    shape: 'pill',
-                                    tagline: 'true'
-                                },
-                                payment: function (data, actions) {
-                                    return actions.payment.create({
-                                        transactions: [{
-                                            amount: {
-                                                total: '0.01',
-                                                currency: 'USD'
-                                            }
-                                        }]
-                                    });
-                                },
-                                onAuthorize: function (data, actions) {
-                                    return actions.payment.execute()
-                                        .then(function () {
-                                            window.alert('Thank you for your purchase!');
-                                        });
-                                }
-                            }, '#paypal-button');
-                        </script>
+
                     </div>
                 </div>
             </div>
@@ -233,7 +207,7 @@
     </div>
 
     <div class="cart">
-        
+
 
     </div>
     </div>
@@ -246,6 +220,8 @@
     <footer>
         <p>Karl Fashion. © Copyright 2018 Copyright.mx - Todos los derechos reservados </p>
     </footer>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
@@ -255,6 +231,38 @@
         crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/app.js"></script>
+    <script>
+        paypal.Button.render({
+            env: 'sandbox',
+            client: {
+                sandbox: 'demo_sandbox_client_id'
+            },
+            style: {
+                color: 'silver',
+                shape: 'pill',
+                tagline: 'true'
+            },
+            payment: function (data, actions) {
+                return actions.payment.create({
+                    transactions: [{
+                        amount: {
+                            total: '0.01',
+                            currency: 'USD'
+                        }
+                    }]
+                });
+            },
+            onAuthorize: function (data, actions) {
+                return actions.payment.execute()
+                    .then(function () {
+                        window.localStorage.ecomerceCart = '';
+                        swal("Your purchase is complete!", "Thanks for shopping with us!", "success");
+                        $('#cartModal').modal('toggle');
+
+                    });
+            }
+        }, '#paypal-button');
+    </script>
 </body>
 
 </html>
