@@ -152,10 +152,10 @@ $(document).ready(function () {
             '<h5>' + '$'+
             '<span class="dress-price">' + singleProductPrice + '</span>' + ' pesos' +
             '</h5>' +
-            '<button id="add-to-cart" type="button" class="btn btn-dark">' +
-            '<i class="fa fa-shopping-cart"></i> Add to car...</button>' +
+            '<button id="add-to-cart" type="button" class="btn btn-dark" product-title="'+singleProductTitle+'" product-price="'+singleProductPrice+'">' +
+            '<i class="fa fa-shopping-cart"></i>Add to cart</button>' +
             '<button id="go-back" type="button" class="btn btn-dark">' +
-            '<i class="fa fa-shopping-cart"></i>Go Back...</button>' +
+            '</i>Go Back...</button>' +
             '</div>' +
             '</div>' +
             '</div >'
@@ -165,11 +165,11 @@ $(document).ready(function () {
 
 
     /************************************************************************************************************** */
-    // $(document).on('click', 'error', function(){
-    //     window.location.href='error';
-    //     console.log("oops tas tonta");
+     $(document).on('click', 'error', function(){
+         window.location.href='error';
+         console.log("oops tas tonta");
         
-    // })
+     })
     
     $(window).on('hashchange', function(){
 		render(decodeURI(window.location.hash));
@@ -204,7 +204,7 @@ $(document).ready(function () {
                 console.log(url.split('#product/'));
 
 				renderSingleProductPage(id);
-            },
+            }
             // '#error': function(){
             //     renderErrorPage();
             // }
@@ -225,6 +225,7 @@ $(document).ready(function () {
     
     function renderProductsPage(data){
         $( ".all-products" ).show();
+        $( ".single-product" ).hide();
         ajaxDress();
         console.log('RenderProductsPage');
 
@@ -232,24 +233,102 @@ $(document).ready(function () {
 
     function renderSingleProductPage(dressId){
         $( ".all-products" ).hide();
+        $( ".single-product" ).show();
         openSingleDress(dressId)
         console.log('renderSingleProductPage');
 
     }
-    // // Shows the error page.
-    // function renderErrorPage(){
-    //     var page = $('.error-page');
-	// 	page.addClass('visible');
-    //     console.log('renderErrorPage');
 
-    // }
+    //Shows the error page.
+    function renderErrorPage(){
+		var page = $('.error');
+		page.addClass('visible');
+	}
 
     $(document).on('click', '#go-back', function(){
         window.location.href='';
     })
 
-});
+    //funcion que agregue al carrito
 
+    $(document).on('click', '#add-to-cart', function(event){
+        event.preventDefault();
+        var title = $(this).attr('product-title');
+        var price = Number($(this).attr('product-price'));
+
+        console.log(title);
+        console.log(price);
+        addToCart(title, price);
+    });
+
+    function addToCart(title, price){
+
+        var cart = [];
+        var product = {
+            title: title,
+            price: price
+        };
+
+        if(window.localStorage.ecomerceCart){
+            cart = JSON.parse(window.localStorage.ecomerceCart);
+        }
+
+        cart.push(product);
+        window.localStorage.ecomerceCart = JSON.stringify(cart);
+    }
+
+    $(document).on('click', '.delete-from-cart', function(event){
+        event.preventDefault();
+        var index = $(this).attr('index');
+
+        console.log(index);
+        deleteFromCart(index);
+        drawCart();
+    });
+
+    
+
+    function deleteFromCart(index){
+        if(window.localStorage.ecomerceCart){
+            var cart = JSON.parse(window.localStorage.ecomerceCart);
+            cart.splice(index, 1);
+
+            window.localStorage.ecomerceCart = JSON.stringify(cart);
+        }
+    }
+
+    $('#cartModal').on('show.bs.modal', function (e) {
+        drawCart();
+    })
+
+    function drawCart(){
+        $('#cartModal .cart-items').empty();
+        var cartItems = getCartItems();
+        var total = 0;
+        for(var i = 0; i < cartItems.length; i++){
+            var currentItem = cartItems[i];
+            total += currentItem.price;
+            $("#cartModal .cart-items").append(buildCartTemplate(currentItem, i));
+        }
+
+        $('.cart-total').html('$' + total + 'MXN');
+    }
+
+    function buildCartTemplate(cartItem, index){
+        var template = '<div class="row cart-item">' +
+            '<div class="col-3">' + cartItem.price +'</div>' +
+            '<div class="col-6">' + cartItem.title + '</div>' +
+            '<div class="col-3"> <button class="delete-from-cart" index="'+index+'">Borrar</button></div>' +
+        '</div>';
+
+        return template;
+    }
+
+    function getCartItems(){
+        return JSON.parse(window.localStorage.ecomerceCart);
+    }
+
+});
 
 
 

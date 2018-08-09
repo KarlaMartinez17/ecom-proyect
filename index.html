@@ -32,15 +32,16 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <!-- Button trigger modal -->
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#cartModal">
                         <i class="fa fa-shopping-cart"></i>
                     </a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+            <!-- <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button id="error" class="btn btn-outline-white my-2 my-sm-0" type="submit">Search</button>
-            </form> 
+            </form>  -->
         </div>
     </nav>
     <br>
@@ -132,13 +133,115 @@
                                 </div>
                             </div>
                         </div> -->
-
         </div>
     </div>
 
-    <div class="error-page">
-        <h3>Sorry, something went wrong :(</h3>
+    
+    
+    <!-- Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div id="Shooping-bag-title" class="col-12 text-center">
+                                <h2>Shooping Bag</h2>
+                            </div>
+                            
+                            <div class="cart-items">
+                                 <!--
+                                <div class="col-12 text-center">
+                                    <h4>Nombre de prenda:
+                                        <span class="dress-name">Vestidito</span>
+                                    </h4>
+                                    <h5>Precio:
+                                        <span class="dress-price">$550</span>
+                                    </h5>
+                                    <button class="delete-from-cart" index="0">Quitar del carrito</button>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <h4>Nombre de prenda:
+                                        <span class="dress-name">Vestidito</span>
+                                    </h4>
+                                    <h5>Precio:
+                                        <span class="dress-price">$550</span>
+                                    </h5>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <h4>Nombre de prenda:
+                                        <span class="dress-name">Vestidito</span>
+                                    </h4>
+                                    <h5>Precio:
+                                        <span class="dress-price">$550</span>
+                                    </h5>
+                                </div>
+                                -->
+                            </div>
+
+                           
+                    
+                        </div>
+                    
+                    
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div id="paymentPayPal" class="col-12 text-center shadow-lg rounded">
+                        <h4>Total de la compra :<span class="cart-total"></span></h4>
+                        <div id="paypal-button"></div>
+                        <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+                        <script>
+                            paypal.Button.render({
+                                env: 'sandbox',
+                                client: {
+                                    sandbox: 'demo_sandbox_client_id'
+                                },
+                                style: {
+                                    color: 'silver',
+                                    shape: 'pill',
+                                    tagline: 'true'
+                                },
+                                payment: function (data, actions) {
+                                    return actions.payment.create({
+                                        transactions: [{
+                                            amount: {
+                                                total: '0.01',
+                                                currency: 'USD'
+                                            }
+                                        }]
+                                    });
+                                },
+                                onAuthorize: function (data, actions) {
+                                    return actions.payment.execute()
+                                        .then(function () {
+                                            window.alert('Thank you for your purchase!');
+                                        });
+                                }
+                            }, '#paypal-button');
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <div class="cart">
+        
+
+    </div>
+    </div>
+    </div>
+
+    <!-- <div class="error page">
+        <h3>Sorry, something went wrong :(</h3>
+    </div> -->
 
     <footer>
         <p>Karl Fashion. © Copyright 2018 Copyright.mx - Todos los derechos reservados </p>

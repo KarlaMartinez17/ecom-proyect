@@ -64,7 +64,7 @@ footer p{
 
 /*pagina de error*/
 
-.error-page{
+.error{
 	opacity: 0;
 	transition: 0.6s;
 	pointer-events: none;
@@ -74,10 +74,21 @@ footer p{
 	width: 100%;
 }
 
-.error.visible-page{
+.error.visible{
 	opacity: 1;
 }
 
-.error-page h3{
+.error h3{
 	font-size: 40px;
+}
+
+#Shooping-bag-title{
+    margin-bottom: 50px;
+}
+
+#paymentPayPal{
+   border: 1px darkgray;
+   padding: 1em;
+   margin-top: 5%;
+   margin-bottom: 10%;
 }
