@@ -165,21 +165,20 @@ $(document).ready(function () {
 
 
     /************************************************************************************************************** */
-     $(document).on('click', 'error', function(){
-         window.location.href='error';
-         console.log("oops tas tonta");
+    //  $(document).on('click', 'error', function(){
+    //      window.location.href='error';
         
-     })
+    //  })
     
     $(window).on('hashchange', function(){
-		render(decodeURI(window.location.hash));
+        render(decodeURI(window.location.hash));
     });
     
     $(window).trigger('hashchange');
 
 	// Navigation
 	function render(url) {
-        console.log('hola');
+
 
 		// Get the keyword from the url.
 		var temp = url.split('/')[0];
@@ -239,11 +238,11 @@ $(document).ready(function () {
 
     }
 
-    //Shows the error page.
-    function renderErrorPage(){
-		var page = $('.error');
-		page.addClass('visible');
-	}
+    // //Shows the error page.
+    // function renderErrorPage(){
+	// 	var page = $('.error');
+	// 	page.addClass('visible');
+	// }
 
     $(document).on('click', '#go-back', function(){
         window.location.href='';
@@ -269,7 +268,7 @@ $(document).ready(function () {
             price: price
         };
 
-        if(window.localStorage.ecomerceCart){
+        if(window.localStorage.ecomerceCart){ 
             cart = JSON.parse(window.localStorage.ecomerceCart);
         }
 
