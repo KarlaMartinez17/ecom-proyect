@@ -6,4 +6,6 @@ Proyecto en donde se desarrolla una página de E-commerce de venta de vestidos, 
 
 ## Desarrollado para [Laboratoria] (http://laboratoria.la)
 
+### Demo a continuación...
+
 ![DEMO](assets/image/demo.gif)
